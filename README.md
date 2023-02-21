@@ -58,6 +58,12 @@ Clicking on tables in quill editor will initialize the tools for table, all feat
 
 Since I use webpack externals to bundle, you must expose `Quill` to window object, like load quill.js by script tag globally. Or you may need to fork this repo and build what you need.
 
+# Development
+It is updated to be compatable with Node `v19.6.1`
+```
+npm install
+```
+
 # Installation
 ```
 npm install quill-better-table
