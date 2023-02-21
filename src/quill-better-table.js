@@ -131,7 +131,6 @@ class BetterTable extends Module {
 
     // add keyboard binding：Backspace
     // prevent user hits backspace to delete table cell
-    // const KeyBoard = quill.getModule('keyboard')
     quill.keyboard.addBinding(
       { key: 'Backspace' },
       {},
@@ -216,7 +215,7 @@ class BetterTable extends Module {
     delta = new Array(rows).fill(0).reduce(memo => {
       let tableRowId = rowId()
       return new Array(columns).fill('\n').reduce((memo, text) => {
-        memo.insert(text, { 'table-cell-line': {row: tableRowId, cell: cellId()} });
+        memo.insert(text, { 'table-cell-line': { row: tableRowId, cell: cellId() } });
         return memo
       }, memo)
     }, delta)
@@ -225,13 +224,13 @@ class BetterTable extends Module {
     this.quill.setSelection(range.index + columns + 1, Quill.sources.API)
   }
 
-  showTableTools (table, quill, options) {
+  showTableTools(table, quill, options) {
     this.table = table
     this.columnTool = new TableColumnTool(table, quill, options)
     this.tableSelection = new TableSelection(table, quill, options)
   }
 
-  hideTableTools () {
+  hideTableTools() {
     this.columnTool && this.columnTool.destroy()
     this.tableSelection && this.tableSelection.destroy()
     this.tableOperationMenu && this.tableOperationMenu.destroy()
@@ -259,7 +258,7 @@ BetterTable.keyboardBindings = {
     format: ['table-cell-line'],
     collapsed: true,
     suffix: /^$/,
-    handler() {},
+    handler() { },
   },
 
   'table-cell-line enter': {
@@ -307,7 +306,7 @@ BetterTable.keyboardBindings = {
       if (target && target.statics.blotName === 'table-view') {
         const targetCell = target.table().rows()[0].children.head
         const targetLine = targetCell.children.head
-        
+
         this.quill.setSelection(
           targetLine.offset(this.quill.scroll),
           0,
@@ -328,7 +327,7 @@ BetterTable.keyboardBindings = {
         const rows = target.table().rows()
         const targetCell = rows[rows.length - 1].children.head
         const targetLine = targetCell.children.head
-        
+
         this.quill.setSelection(
           targetLine.offset(this.quill.scroll),
           0,
@@ -342,7 +341,7 @@ BetterTable.keyboardBindings = {
   }
 }
 
-function makeTableArrowHandler (up) {
+function makeTableArrowHandler(up) {
   return {
     key: up ? 'ArrowUp' : 'ArrowDown',
     collapsed: true,
@@ -367,7 +366,7 @@ function makeTableArrowHandler (up) {
           cur = cur.prev
           totalColspanOfCur += parseInt(cur.formats()['colspan'], 10)
         }
-        
+
         while (targetCell.next != null && totalColspanOfTargetCell < totalColspanOfCur) {
           targetCell = targetCell.next
           totalColspanOfTargetCell += parseInt(targetCell.formats()['colspan'], 10)
@@ -398,11 +397,11 @@ function makeTableArrowHandler (up) {
   };
 }
 
-function isTableCell (blot) {
+function isTableCell(blot) {
   return blot.statics.blotName === TableCell.blotName
 }
 
-function isInTableCell (current) {
+function isInTableCell(current) {
   return current && current.parent
     ? isTableCell(current.parent)
       ? true
