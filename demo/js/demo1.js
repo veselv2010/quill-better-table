@@ -8,25 +8,23 @@ Quill.register({
 
 window.onload = () => {
   const quill = new Quill('#editor-wrapper', {
-    theme: 'snow',
+    theme: 'better-table-snow',
     modules: {
-      table: false,
-      'better-table': {
-        operationMenu: {
-          items: {
-            unmergeCells: {
-              text: 'Another unmerge cells name'
-            }
-          },
-
-          color: {
-            colors: ['red', 'green', 'yellow', 'white', 'red', 'green', 'yellow', 'white']
-          }
-        }
-      },
+      'better-table': [],
+      "toolbar": [
+        ["clean"],
+        ["bold", "italic", "underline", "strike", {
+          "script": "super"
+        }, {
+            "script": "sub"
+          }],
+        ["link", {
+          "better-table": []
+        }]
+      ],
       keyboard: {
         bindings: QuillBetterTable.keyboardBindings
-      }
+      },
     }
   })
 
