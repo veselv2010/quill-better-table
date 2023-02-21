@@ -131,12 +131,13 @@ module.exports = (env, argv) => {
 
       new webpack.HotModuleReplacementPlugin({})
     ],
-
+    devtool: 'inline-source-map',
     devServer:{
       host:'localhost',
       static: './dist',
-      port: 8080,
-      hot: false
+      port: 9085,
+      hot: true,
+      https: true,
     }
   }
 }
