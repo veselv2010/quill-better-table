@@ -131,7 +131,7 @@ module.exports = (env, argv) => {
 
       new webpack.HotModuleReplacementPlugin({})
     ],
-    devtool: 'inline-source-map',
+    devtool: minimize ? false :'inline-source-map',
     devServer:{
       host:'localhost',
       static: './dist',
